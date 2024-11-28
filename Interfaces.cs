@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public interface IShell
 {
     int wall { get; set; }//0 free -1 wall 1 winZone
-    IModificador Modificador { get;  }
+    IModificador Modificador { get; }
 }
 public interface IModificador
 {
@@ -17,7 +17,7 @@ public interface IModificador
 public interface IMaze<T>
 {
     int Size { get; }
-    T[,] Maze {  get; }
+    T[,] Maze { get; }
 }
 
 public interface IPlayer
@@ -26,8 +26,8 @@ public interface IPlayer
 }
 public interface IFicha
 {
-    int speed {  get; }
-    Hability hability {  get; }
+    int speed { get; }
+    Hability hability { get; }
     IShell shell { get; }
 }
 

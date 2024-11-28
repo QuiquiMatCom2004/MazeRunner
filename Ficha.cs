@@ -2,9 +2,9 @@
 {
     public int speed => _speed;
 
-    public Hability hability =>_hability;
+    public Hability hability => _hability;
 
-    public IShell shell =>_shell;
+    public IShell shell => _shell;
 
     int _speed;
     Hability _hability;

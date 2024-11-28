@@ -1,0 +1,14 @@
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/MazeRunner
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/MazeRunner.deps.json
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/MazeRunner.runtimeconfig.json
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/MazeRunner.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/MazeRunner.pdb
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.GeneratedMSBuildEditorConfig.editorconfig
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.AssemblyInfoInputs.cache
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.AssemblyInfo.cs
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.csproj.CoreCompileInputs.cache
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.dll
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/refint/MazeRunner.dll
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.pdb
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.genruntimeconfig.cache
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/ref/MazeRunner.dll

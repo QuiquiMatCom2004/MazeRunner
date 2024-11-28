@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4vbKAFn/LdvbQJg+SAC96wwBVN0TqunzV4z51ZbDbH0LaXE5o0ewmpF56QX0r4fr39rPzDUsQr5VGMsmxtWo5g==",
+  "dgSpecHash": "Af9vLRcL59XXRh4xDfdSsUmEkwND1jMfnPAgO/uLNrIAmGWHqvJgQ7vETQGJfSqIESndiKkHT7498F9VZ4Ds6A==",
   "success": true,
   "projectFilePath": "/home/kiki/Escritorio/MazeRunner/MazeRunner.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/kiki/.nuget/packages/spectre.console/0.49.1/spectre.console.0.49.1.nupkg.sha512",
+    "/home/kiki/.nuget/packages/spectre.console.cli/0.49.1/spectre.console.cli.0.49.1.nupkg.sha512"
+  ],
   "logs": []
 }
