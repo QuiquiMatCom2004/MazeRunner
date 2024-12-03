@@ -19,3 +19,4 @@
 /home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/sv/Spectre.Console.Cli.resources.dll
 /home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.csproj.AssemblyReference.cache
 /home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.csproj.CopyComplete
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.sourcelink.json
