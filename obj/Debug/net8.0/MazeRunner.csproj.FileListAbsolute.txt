@@ -12,3 +12,10 @@
 /home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.pdb
 /home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.genruntimeconfig.cache
 /home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/ref/MazeRunner.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/Spectre.Console.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/Spectre.Console.Cli.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/de/Spectre.Console.Cli.resources.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/fr/Spectre.Console.Cli.resources.dll
+/home/kiki/Escritorio/MazeRunner/bin/Debug/net8.0/sv/Spectre.Console.Cli.resources.dll
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.csproj.AssemblyReference.cache
+/home/kiki/Escritorio/MazeRunner/obj/Debug/net8.0/MazeRunner.csproj.CopyComplete
