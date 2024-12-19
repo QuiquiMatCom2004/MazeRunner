@@ -8,12 +8,16 @@ public class Shell : IShell
 {
     public int wall { get => _wall; set => _wall = value; }
     public IModificador Modificador { get => _modificador; }
+    public int x { get => directionX; }
+    public int y { get => directionY; }
     private int _wall;
     IModificador _modificador;
-
-    public Shell(int wall, IModificador modificador = null)
+    private int directionX, directionY;
+    public Shell(int wall, int directionX, int directionY, IModificador modificador = null)
     {
         _wall = wall;
         _modificador = modificador;
+        this.directionX = directionX;
+        this.directionY = directionY;
     }
 }

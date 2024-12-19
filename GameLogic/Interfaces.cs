@@ -9,6 +9,8 @@ public interface IShell
 {
     int wall { get; set; }//0 free -1 wall 1 winZone
     IModificador Modificador { get; }
+    int x { get; }
+    int y { get; }
 }
 public interface IModificador
 {
@@ -28,7 +30,7 @@ public interface IFicha
 {
     int speed { get; }
     Hability hability { get; }
-    IShell shell { get; }
+    IShell shell { get; set; }
 }
 
 public delegate void Hability();

@@ -1,19 +1,31 @@
-﻿using Spectre.Console;
+﻿using System.Runtime.InteropServices;
+using Spectre.Console;
 class Program
 {
     public static void Main(string[] args)
     {
-        //AnsiConsole.Markup("Hello :globe_showing_europe_africa:!");
-
-        /*IMaze<IShell> maze = new MazeRunner(10);
-        for (int i = 0; i < maze.Maze.GetLength(0); i++)
-        {
-            System.Console.WriteLine("\n----------------------");
-            for (int j = 0; j < maze.Maze.GetLength(1); j++)
-            {
-                System.Console.Write(" {0}", maze.Maze[i, j].wall);
+        IMaze<IShell> maze = new MazeRunner(50,2);
+        (int,int)[] posiciones = new (int,int)[2];//Cambiarlo a lista
+        for(int i = 0;i<maze.Size;i++){
+            if(maze.Maze[0,i].wall == 3){
+                //Anadir a posiciones en la ultima posicion (0,i)
             }
-        }*/
-        DrawMaze.Draw();
+        }
+        IPlayer[] players= new IPlayer[1];
+        IFicha[] fichas = new IFicha[2];
+        fichas = [new Fichas(5,new Shell(1,1,2)),new Fichas(4, new Shell(1,8,9))];
+        players[0] = new Player(fichas);
+
+        // for(int i=0; i<players.Length;i++){
+        //     fichas.Append(new Fichas(5,new Shell(3,posiciones.First().Item1,posiciones.First().Item2)));
+        //     var aux = posiciones.ToList();
+        //     aux.Remove(aux.First());
+        //     posiciones = aux.ToArray();
+        //     IFicha[] auxFichas = new IFicha[2];
+        //     auxFichas = (IFicha[])(fichas.Clone());
+        //     players[i]=new Player(auxFichas);
+        //     fichas = new IFicha[2];
+        // }
+        GameController gameController = new GameController(maze,players);
     }
 }

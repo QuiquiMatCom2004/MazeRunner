@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Spectre.Console;
 
 
 public class MazeRunner : IMaze<IShell>
@@ -14,15 +15,18 @@ public class MazeRunner : IMaze<IShell>
     private const int Path = 1;
     private const int Win = 2;
     private const int Start = 3;
+    private const int TeleportZone = 4;
 
     int n;
     IShell[,] maze;
+    int nplayer;
     private int[,] _maze;
-    public MazeRunner(int n)
+    public MazeRunner(int Size, int numberPlayer)
     {
-        if (n % 2 == 0) n++;
-        this.n = n;
+        if (Size % 2 == 0) Size++;
+        n = Size;
         _maze = new int[n, n];
+        nplayer = numberPlayer;
         MakeStandarInitialMaze();
         MakeMaze();
     }
@@ -33,7 +37,7 @@ public class MazeRunner : IMaze<IShell>
         {
             for (int j = 0; j < maze.GetLength(1); j++)
             {
-                maze[i, j] = new Shell(-1);
+                maze[i, j] = new Shell(Wall, i, j);
             }
         }
     }
@@ -47,7 +51,8 @@ public class MazeRunner : IMaze<IShell>
         {
             GeneratePath(ref startX, ref startY);
         }
-        //Mask();
+        Mask();
+        SetWinCondicionAndStartPoint(nplayer);
         AssignamentMaze();
     }
     private void AssignamentMaze()
@@ -177,42 +182,42 @@ public class MazeRunner : IMaze<IShell>
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i, j - 1] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 1, j + 2] == Path && _maze[i + 1, j + 3] == Path && j - 1 == 0)
+                            if (j - 1 == 0 && _maze[i, j - 1] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 1, j + 2] == Path && _maze[i + 1, j + 3] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i, j + 1] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 1, j - 2] == Path && _maze[i + 1, j - 3] == Path && j + 1 == Size - 1)
+                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 1, j - 2] == Path && _maze[i + 1, j - 3] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i, j + 1] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 1, j - 2] == Path && _maze[i - 1, j - 3] == Path && j + 1 == Size - 1)
+                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 1, j - 2] == Path && _maze[i - 1, j - 3] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i, j - 1] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 1, j + 2] == Path && _maze[i - 1, j + 3] == Path && j - 1 == 0)
+                            if (j - 1 == 0 && _maze[i, j - 1] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 1, j + 2] == Path && _maze[i - 1, j + 3] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i - 1, j] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 2, j + 1] == Path && _maze[i + 3, j + 1] == Path && i - 1 == 0)
+                            if (i - 1 == 0 && _maze[i - 1, j] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 2, j + 1] == Path && _maze[i + 3, j + 1] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i - 1, j] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 2, j - 2] == Path && _maze[i + 3, j - 1] == Path && i - 1 == 0)
+                            if (i - 1 == 0 && _maze[i - 1, j] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 2, j - 2] == Path && _maze[i + 3, j - 1] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i + 1, j] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 2, j + 2] == Path && _maze[i - 3, j + 1] == Path && i + 1 == Size - 1)
+                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 2, j + 2] == Path && _maze[i - 3, j + 1] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
                             }
-                            if (_maze[i + 1, j] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 2, j - 2] == Path && _maze[i - 3, j - 1] == Path && i + 1 == Size - 1)
+                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 2, j - 2] == Path && _maze[i - 3, j - 1] == Path)
                             {
                                 _maze[i, j] = Path;
                                 existMask = true;
@@ -234,5 +239,56 @@ public class MazeRunner : IMaze<IShell>
                 }
             }
         } while (existMask);
+    }
+    private void SetWinCondicionAndStartPoint(int n = 1)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            SetInit();
+            if (i == 0)
+                continue;
+            SetWin();
+        }
+        for (int i = 0; i < 2 * Size; i++)
+        {
+            int x = random.Next(Size / 4, 3 * Size / 4);
+            int y = random.Next(Size / 4, 3 * Size / 4);
+            if (_maze[x, y] == Wall && (_maze[x - 1, y] == Path || _maze[x + 1, y] == Path || _maze[x, y - 1] == Path || _maze[x, y + 1] == Path))
+            {
+                _maze[x, y] = TeleportZone;
+                break;
+            }
+        }
+
+    }
+    private void SetWin()
+    {
+        int i = 0;
+        while (i < Size)
+        {
+            int x = random.Next(Size - 1);
+            if (_maze[Size - 2, x] == Path && _maze[Size - 1, x] == Wall)
+            {
+                _maze[Size - 1, x] = Win;
+                return;
+            }
+            i++;
+        }
+        throw new Exception("No se pudo setear la casilla de victoria");
+    }
+    private void SetInit()
+    {
+        int i = 0;
+        while (i < Size)
+        {
+            int x = random.Next(Size - 1);
+            if (_maze[1, x] == Path && _maze[0, x] == Wall)
+            {
+                _maze[0, x] = Start;
+                return;
+            }
+            i++;
+        }
+        throw new Exception("No se pudo setear una casilla de salida");
     }
 }
