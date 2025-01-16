@@ -11,11 +11,7 @@ public class MazeRunner : IMaze<IShell>
     public IShell[,] Maze => maze;
 
     private Random random = new Random();
-    private const int Wall = 0;
-    private const int Path = 1;
-    private const int Win = 2;
-    private const int Start = 3;
-    private const int TeleportZone = 4;
+    
 
     int n;
     IShell[,] maze;
@@ -37,7 +33,7 @@ public class MazeRunner : IMaze<IShell>
         {
             for (int j = 0; j < maze.GetLength(1); j++)
             {
-                maze[i, j] = new Shell(Wall, i, j);
+                maze[i, j] = new Shell(Globals.Wall, i, j);
             }
         }
     }
@@ -72,7 +68,7 @@ public class MazeRunner : IMaze<IShell>
         {
             for (int j = 0; j < Size; j++)
             {
-                _maze[i, j] = Wall;
+                _maze[i, j] = Globals.Wall;
             }
         }
     }
@@ -82,7 +78,7 @@ public class MazeRunner : IMaze<IShell>
         current_col = (random.Next(Size / 2) * 2 + 1);
         current_row = (random.Next(Size / 2) * 2 + 1);
 
-        _maze[current_row, current_col] = Path;
+        _maze[current_row, current_col] = Globals.Path;
     }
     private void GeneratePath(ref int current_row, ref int current_col)
     {
@@ -96,10 +92,10 @@ public class MazeRunner : IMaze<IShell>
                 case 0:
                     if (current_row - 2 >= 0)
                     {
-                        if (_maze[current_row - 2, current_col] != Path)
+                        if (_maze[current_row - 2, current_col] != Globals.Path)
                         {
-                            _maze[current_row - 1, current_col] = Path;
-                            _maze[current_row - 2, current_col] = Path;
+                            _maze[current_row - 1, current_col] = Globals.Path;
+                            _maze[current_row - 2, current_col] = Globals.Path;
                             current_row -= 2;
                             IsDone = true;
                         }
@@ -109,10 +105,10 @@ public class MazeRunner : IMaze<IShell>
                 case 1:
                     if (current_col - 2 >= 0)
                     {
-                        if (_maze[current_row, current_col - 2] != Path)
+                        if (_maze[current_row, current_col - 2] != Globals.Path)
                         {
-                            _maze[current_row, current_col - 1] = Path;
-                            _maze[current_row, current_col - 2] = Path;
+                            _maze[current_row, current_col - 1] = Globals.Path;
+                            _maze[current_row, current_col - 2] = Globals.Path;
                             current_col -= 2; IsDone = true;
                         }
                     }
@@ -120,10 +116,10 @@ public class MazeRunner : IMaze<IShell>
                 case 2:
                     if (current_col + 2 < Size)
                     {
-                        if (_maze[current_row, current_col + 2] != Path)
+                        if (_maze[current_row, current_col + 2] != Globals.Path)
                         {
-                            _maze[current_row, current_col + 1] = Path;
-                            _maze[current_row, current_col + 2] = Path;
+                            _maze[current_row, current_col + 1] = Globals.Path;
+                            _maze[current_row, current_col + 2] = Globals.Path;
                             current_col += 2; IsDone = true;
                         }
                     }
@@ -131,10 +127,10 @@ public class MazeRunner : IMaze<IShell>
                 case 3:
                     if (current_row + 2 < Size)
                     {
-                        if (_maze[current_row + 2, current_col] != Path)
+                        if (_maze[current_row + 2, current_col] != Globals.Path)
                         {
-                            _maze[current_row + 1, current_col] = Path;
-                            _maze[current_row + 2, current_col] = Path;
+                            _maze[current_row + 1, current_col] = Globals.Path;
+                            _maze[current_row + 2, current_col] = Globals.Path;
                             current_row += 2;
                             IsDone = true;
                         }
@@ -161,77 +157,77 @@ public class MazeRunner : IMaze<IShell>
                 {
                     switch (_maze[i, j])
                     {
-                        case Wall:
-                            if (_maze[i, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j + 1] == Wall)
+                        case Globals.Wall:
+                            if (_maze[i, j - 1] == Globals.Wall && _maze[i, j + 1] == Globals.Wall && _maze[i - 1, j - 1] == Globals.Wall && _maze[i - 1, j] == Globals.Path && _maze[i - 1, j + 1] == Globals.Wall)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (_maze[i, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j + 1] == Wall)
+                            if (_maze[i, j - 1] == Globals.Wall && _maze[i, j + 1] == Globals.Wall && _maze[i + 1, j - 1] == Globals.Wall && _maze[i + 1, j] == Globals.Path && _maze[i + 1, j + 1] == Globals.Wall)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (_maze[i - 1, j] == Wall && _maze[i + 1, j] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i, j + 1] == Path && _maze[i + 1, j + 1] == Wall)
+                            if (_maze[i - 1, j] == Globals.Wall && _maze[i + 1, j] == Globals.Wall && _maze[i - 1, j + 1] == Globals.Wall && _maze[i, j + 1] == Globals.Path && _maze[i + 1, j + 1] == Globals.Wall)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (_maze[i - 1, j] == Wall && _maze[i + 1, j] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i, j - 1] == Path && _maze[i + 1, j - 1] == Wall)
+                            if (_maze[i - 1, j] == Globals.Wall && _maze[i + 1, j] == Globals.Wall && _maze[i - 1, j - 1] == Globals.Wall && _maze[i, j - 1] == Globals.Path && _maze[i + 1, j - 1] == Globals.Wall)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (j - 1 == 0 && _maze[i, j - 1] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 1, j + 2] == Path && _maze[i + 1, j + 3] == Path)
+                            if (j - 1 == 0 && _maze[i, j - 1] == Globals.Wall && _maze[i + 1, j - 1] == Globals.Wall && _maze[i, j + 1] == Globals.Wall && _maze[i, j + 2] == Globals.Wall && _maze[i, j + 3] == Globals.Wall && _maze[i + 1, j] == Globals.Path && _maze[i + 1, j + 1] == Globals.Path && _maze[i + 1, j + 2] == Globals.Path && _maze[i + 1, j + 3] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i + 1, j] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 1, j - 2] == Path && _maze[i + 1, j - 3] == Path)
+                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Globals.Wall && _maze[i + 1, j + 1] == Globals.Wall && _maze[i, j - 1] == Globals.Wall && _maze[i, j - 2] == Globals.Wall && _maze[i, j - 3] == Globals.Wall && _maze[i + 1, j] == Globals.Path && _maze[i + 1, j - 1] == Globals.Path && _maze[i + 1, j - 2] == Globals.Path && _maze[i + 1, j - 3] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i, j - 1] == Wall && _maze[i, j - 2] == Wall && _maze[i, j - 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 1, j - 2] == Path && _maze[i - 1, j - 3] == Path)
+                            if (j + 1 == Size - 1 && _maze[i, j + 1] == Globals.Wall && _maze[i - 1, j + 1] == Globals.Wall && _maze[i, j - 1] == Globals.Wall && _maze[i, j - 2] == Globals.Wall && _maze[i, j - 3] == Globals.Wall && _maze[i - 1, j] == Globals.Path && _maze[i - 1, j - 1] == Globals.Path && _maze[i - 1, j - 2] == Globals.Path && _maze[i - 1, j - 3] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (j - 1 == 0 && _maze[i, j - 1] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i, j + 2] == Wall && _maze[i, j + 3] == Wall && _maze[i - 1, j] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 1, j + 2] == Path && _maze[i - 1, j + 3] == Path)
+                            if (j - 1 == 0 && _maze[i, j - 1] == Globals.Wall && _maze[i - 1, j - 1] == Globals.Wall && _maze[i, j + 1] == Globals.Wall && _maze[i, j + 2] == Globals.Wall && _maze[i, j + 3] == Globals.Wall && _maze[i - 1, j] == Globals.Path && _maze[i - 1, j + 1] == Globals.Path && _maze[i - 1, j + 2] == Globals.Path && _maze[i - 1, j + 3] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (i - 1 == 0 && _maze[i - 1, j] == Wall && _maze[i - 1, j + 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i + 1, j + 1] == Path && _maze[i + 2, j + 1] == Path && _maze[i + 3, j + 1] == Path)
+                            if (i - 1 == 0 && _maze[i - 1, j] == Globals.Wall && _maze[i - 1, j + 1] == Globals.Wall && _maze[i + 1, j] == Globals.Wall && _maze[i + 2, j] == Globals.Wall && _maze[i + 3, j] == Globals.Wall && _maze[i, j + 1] == Globals.Path && _maze[i + 1, j + 1] == Globals.Path && _maze[i + 2, j + 1] == Globals.Path && _maze[i + 3, j + 1] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (i - 1 == 0 && _maze[i - 1, j] == Wall && _maze[i - 1, j - 1] == Wall && _maze[i + 1, j] == Wall && _maze[i + 2, j] == Wall && _maze[i + 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 2, j - 2] == Path && _maze[i + 3, j - 1] == Path)
+                            if (i - 1 == 0 && _maze[i - 1, j] == Globals.Wall && _maze[i - 1, j - 1] == Globals.Wall && _maze[i + 1, j] == Globals.Wall && _maze[i + 2, j] == Globals.Wall && _maze[i + 3, j] == Globals.Wall && _maze[i, j - 1] == Globals.Path && _maze[i + 1, j - 1] == Globals.Path && _maze[i + 2, j - 2] == Globals.Path && _maze[i + 3, j - 1] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Wall && _maze[i + 1, j + 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j + 1] == Path && _maze[i - 1, j + 1] == Path && _maze[i - 2, j + 2] == Path && _maze[i - 3, j + 1] == Path)
+                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Globals.Wall && _maze[i + 1, j + 1] == Globals.Wall && _maze[i - 1, j] == Globals.Wall && _maze[i - 2, j] == Globals.Wall && _maze[i - 3, j] == Globals.Wall && _maze[i, j + 1] == Globals.Path && _maze[i - 1, j + 1] == Globals.Path && _maze[i - 2, j + 2] == Globals.Path && _maze[i - 3, j + 1] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
-                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Wall && _maze[i + 1, j - 1] == Wall && _maze[i - 1, j] == Wall && _maze[i - 2, j] == Wall && _maze[i - 3, j] == Wall && _maze[i, j - 1] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 2, j - 2] == Path && _maze[i - 3, j - 1] == Path)
+                            if (i + 1 == Size - 1 && _maze[i + 1, j] == Globals.Wall && _maze[i + 1, j - 1] == Globals.Wall && _maze[i - 1, j] == Globals.Wall && _maze[i - 2, j] == Globals.Wall && _maze[i - 3, j] == Globals.Wall && _maze[i, j - 1] == Globals.Path && _maze[i - 1, j - 1] == Globals.Path && _maze[i - 2, j - 2] == Globals.Path && _maze[i - 3, j - 1] == Globals.Path)
                             {
-                                _maze[i, j] = Path;
+                                _maze[i, j] = Globals.Path;
                                 existMask = true;
                             }
                             break;
-                        case Path:
-                            if (_maze[i - 1, j] == Path && _maze[i - 1, j - 1] == Path && _maze[i - 1, j + 1] == Path && _maze[i, j - 1] == Wall && _maze[i, j + 1] == Wall && _maze[i + 1, j - 1] == Path && _maze[i + 1, j] == Path && _maze[i + 1, j + 1] == Path)
+                        case Globals.Path:
+                            if (_maze[i - 1, j] == Globals.Path && _maze[i - 1, j - 1] == Globals.Path && _maze[i - 1, j + 1] == Globals.Path && _maze[i, j - 1] == Globals.Wall && _maze[i, j + 1] == Globals.Wall && _maze[i + 1, j - 1] == Globals.Path && _maze[i + 1, j] == Globals.Path && _maze[i + 1, j + 1] == Globals.Path)
                             {
-                                _maze[i, j] = Wall;
+                                _maze[i, j] = Globals.Wall;
                                 existMask = true;
                             }
-                            if (_maze[i - 1, j] == Wall && _maze[i - 1, j - 1] == Path && _maze[i - 1, j + 1] == Path && _maze[i, j - 1] == Path && _maze[i, j + 1] == Path && _maze[i + 1, j - 1] == Path && _maze[i + 1, j] == Wall && _maze[i + 1, j + 1] == Path)
+                            if (_maze[i - 1, j] == Globals.Wall && _maze[i - 1, j - 1] == Globals.Path && _maze[i - 1, j + 1] == Globals.Path && _maze[i, j - 1] == Globals.Path && _maze[i, j + 1] == Globals.Path && _maze[i + 1, j - 1] == Globals.Path && _maze[i + 1, j] == Globals.Wall && _maze[i + 1, j + 1] == Globals.Path)
                             {
-                                _maze[i, j] = Wall;
+                                _maze[i, j] = Globals.Wall;
                                 existMask = true;
                             }
                             break;
@@ -253,9 +249,9 @@ public class MazeRunner : IMaze<IShell>
         {
             int x = random.Next(Size / 4, 3 * Size / 4);
             int y = random.Next(Size / 4, 3 * Size / 4);
-            if (_maze[x, y] == Wall && (_maze[x - 1, y] == Path || _maze[x + 1, y] == Path || _maze[x, y - 1] == Path || _maze[x, y + 1] == Path))
+            if (_maze[x, y] == Globals.Wall && (_maze[x - 1, y] == Globals.Path || _maze[x + 1, y] == Globals.Path || _maze[x, y - 1] == Globals.Path || _maze[x, y + 1] == Globals.Path))
             {
-                _maze[x, y] = TeleportZone;
+                _maze[x, y] = Globals.TeleportZone;
                 break;
             }
         }
@@ -267,9 +263,9 @@ public class MazeRunner : IMaze<IShell>
         while (i < Size)
         {
             int x = random.Next(Size - 1);
-            if (_maze[Size - 2, x] == Path && _maze[Size - 1, x] == Wall)
+            if (_maze[Size - 2, x] == Globals.Path && _maze[Size - 1, x] == Globals.Wall)
             {
-                _maze[Size - 1, x] = Win;
+                _maze[Size - 1, x] = Globals.Win;
                 return;
             }
             i++;
@@ -282,9 +278,9 @@ public class MazeRunner : IMaze<IShell>
         while (i < Size)
         {
             int x = random.Next(Size - 1);
-            if (_maze[1, x] == Path && _maze[0, x] == Wall)
+            if (_maze[1, x] == Globals.Path && _maze[0, x] == Globals.Wall)
             {
-                _maze[0, x] = Start;
+                _maze[0, x] = Globals.Start;
                 return;
             }
             i++;

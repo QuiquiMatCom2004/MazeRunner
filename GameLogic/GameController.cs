@@ -44,7 +44,7 @@ class GameController
                 ny+=1;
                 break;
         }
-        if(ny >= 0 && ny < maze.Size && nx >= 0 && nx < maze.Size && maze.Maze[nx,ny].wall == 1){
+        if(ny >= 0 && ny < maze.Size && nx >= 0 && nx < maze.Size && maze.Maze[nx,ny].wall == Globals.Path){
             ficha.shell = maze.Maze[nx,ny];
             return;
         }

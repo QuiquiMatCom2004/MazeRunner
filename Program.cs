@@ -7,13 +7,13 @@ class Program
         IMaze<IShell> maze = new MazeRunner(50,2);
         (int,int)[] posiciones = new (int,int)[2];//Cambiarlo a lista
         for(int i = 0;i<maze.Size;i++){
-            if(maze.Maze[0,i].wall == 3){
-                //Anadir a posiciones en la ultima posicion (0,i)
+            if(maze.Maze[0,i].wall == Globals.Start){
+                posiciones[0] = (0,i);
             }
         }
         IPlayer[] players= new IPlayer[1];
         IFicha[] fichas = new IFicha[2];
-        fichas = [new Fichas(5,new Shell(1,1,2)),new Fichas(4, new Shell(1,8,9))];
+        fichas = [new Fichas(5,new Shell(1,posiciones[0].Item1,posiciones[0].Item2)),new Fichas(4, new Shell(1,8,9))];
         players[0] = new Player(fichas);
 
         // for(int i=0; i<players.Length;i++){
