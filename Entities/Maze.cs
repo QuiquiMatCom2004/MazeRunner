@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Spectre.Console;
+using Architecture.IShells;
+using Architecture.IMazes;
+using Variable.Globals;
 
 
 public class MazeRunner : IMaze<IShell>

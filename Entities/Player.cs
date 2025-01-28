@@ -1,4 +1,7 @@
-﻿public class Player : IPlayer
+﻿using Architecture.IFichas;
+using Architecture.IPlayers;
+
+public class Player : IPlayer
 {
     public IFicha[] fichas => _fichas;
     IFicha[] _fichas;

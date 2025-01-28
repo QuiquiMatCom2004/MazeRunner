@@ -3,6 +3,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Security;
 using Spectre.Console;
+using Architecture.IFichas;
+using Architecture.IPlayers;
+using Architecture.IMazes;
+using Architecture.IShells;
+using Variable.Globals;
+
 
 class GameController
 {

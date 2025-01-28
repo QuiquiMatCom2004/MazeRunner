@@ -1,4 +1,7 @@
 using Spectre.Console;
+using Architecture.IMazes;
+using Variable.Globals;
+using Architecture.IShells;
 
 
 class DrawMaze

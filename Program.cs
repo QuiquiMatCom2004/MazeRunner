@@ -1,5 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using Spectre.Console;
+using Architecture.IFichas;
+using Architecture.IMazes;
+using Architecture.IShells;
+using Architecture.IPlayers;
+using Variable.Globals;
+
 class Program
 {
     public static void Main(string[] args)
@@ -26,6 +32,6 @@ class Program
         //     players[i]=new Player(auxFichas);
         //     fichas = new IFicha[2];
         // }
-        GameController gameController = new GameController(maze,players);
+        //GameController gameController = new GameController(maze,players);
     }
 }

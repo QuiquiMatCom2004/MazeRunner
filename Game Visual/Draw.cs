@@ -1,5 +1,7 @@
 using Spectre.Console;
-
+using Architecture.IMazes;
+using Architecture.IFichas;
+using Architecture.IShells;
 public class DrawGame
 {
     public static void Draw(IMaze<IShell> maze, IFicha[] fichas){
