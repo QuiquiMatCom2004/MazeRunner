@@ -14,11 +14,11 @@ class DrawMaze
             var colorIndex = num % 5;
             return colorIndex switch
             {
-                Globals.Wall => Color.DarkRed,
-                Globals.Path => Color.Green,
-                Globals.Win => Color.Blue,
-                Globals.Start => Color.White,
-                Globals.TeleportZone => Color.Yellow,
+                Global.Wall => Color.DarkRed,
+                Global.Path => Color.Green,
+                Global.Win => Color.Blue,
+                Global.Start => Color.White,
+                Global.TeleportZone => Color.Yellow,
                 _ => Color.Aqua
             };
         };

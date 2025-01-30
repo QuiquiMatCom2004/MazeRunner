@@ -8,6 +8,9 @@ using Architecture.IPlayers;
 using Architecture.IMazes;
 using Architecture.IShells;
 using Variable.Globals;
+using Variable.Reglas;
+using Variable.Move;
+using Variable.SystemTurns;
 
 
 class GameController
@@ -22,40 +25,23 @@ class GameController
     }
     private void Start()
     {
+        DrawGame.Draw(maze,players[0].fichas);
         while(!gameOver){
             Update();
-            DrawGame.Draw(maze,players[0].fichas);
+            
             gameOver = true;
         }
     }
-    public void Update(){
-
-    }
-    private void Move(IFicha ficha){
-        int x = ficha.shell.x;
-        int y = ficha.shell.y;
-        int nx= x;
-        int ny= y;
-        switch(Console.ReadKey(true).Key){
-            case ConsoleKey.LeftArrow:
-                nx -=1; 
-                break;
-            case ConsoleKey.RightArrow:
-                nx +=1;
-                break;
-            case ConsoleKey.UpArrow:
-                ny-=1;
-                break;
-            case ConsoleKey.DownArrow:
-                ny+=1;
-                break;
-        }
-        if(ny >= 0 && ny < maze.Size && nx >= 0 && nx < maze.Size && maze.Maze[nx,ny].wall == Globals.Path){
-            ficha.shell = maze.Maze[nx,ny];
-            return;
-        }
-        else{
-            throw new Exception("Intentaste moverte a zona inaccesible");
+    private void Update(){
+        Reglas.NextTurn = SystemTurn.StandartNextTurn;
+        IPlayer actualPlayer = players[Reglas.NextTurn(players)];
+        IFicha actualFicha = SystemTurn.GetFicha(actualPlayer);
+        Reglas.Move = Move.StandartMove;
+        int cont= 0;
+        while(cont < actualFicha.speed){
+            Reglas.Move(actualFicha,maze);
+            cont++;
+            DrawGame.Draw(maze,players[0].fichas);
         }
     }
 }

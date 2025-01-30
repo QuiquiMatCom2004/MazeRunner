@@ -1,5 +1,5 @@
 namespace Variable.Globals{
-    public static class Globals
+    public static class Global
     {
         public const int Wall = 0;
         public const int Path = 1;

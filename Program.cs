@@ -13,7 +13,7 @@ class Program
         IMaze<IShell> maze = new MazeRunner(50,2);
         (int,int)[] posiciones = new (int,int)[2];//Cambiarlo a lista
         for(int i = 0;i<maze.Size;i++){
-            if(maze.Maze[0,i].wall == Globals.Start){
+            if(maze.Maze[0,i].wall == Global.Start){
                 posiciones[0] = (0,i);
             }
         }
@@ -32,6 +32,6 @@ class Program
         //     players[i]=new Player(auxFichas);
         //     fichas = new IFicha[2];
         // }
-        //GameController gameController = new GameController(maze,players);
+        GameController gameController = new GameController(maze,players);
     }
 }
