@@ -1,6 +1,10 @@
+using Architecture.IFichas;
+using Architecture.IShells;
+
 namespace Architecture.IModicadores{
     public interface IModificador
     {
-        Action execute { get; }
+        IShell shell {get;}
+        Action<IFicha> execute { get; }
     }
 }

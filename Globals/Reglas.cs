@@ -9,7 +9,7 @@ namespace Variable.Reglas{
     {
         public static Action<IFicha,IMaze<IShell>> Move;
         public static Func<IPlayer[],int> NextTurn;
-        public static Action<Modificador> TrapSistem;
-        public static Func<bool> Victory;
+        public static Action<IModificador[],IFicha> TrapSistem;
+        public static Func<IPlayer[],IMaze<IShell>,bool> Victory;
     }
 }

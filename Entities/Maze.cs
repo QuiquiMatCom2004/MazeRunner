@@ -266,9 +266,10 @@ public class MazeRunner : IMaze<IShell>
         while (i < Size)
         {
             int x = random.Next(Size - 1);
-            if (_maze[Size - 2, x] == Global.Path && _maze[Size - 1, x] == Global.Wall)
+            if (_maze[x,Size - 2] == Global.Path && _maze[x,Size - 1] == Global.Wall && _maze[x,1] == Global.Path && _maze[x,0] == Global.Wall)
             {
-                _maze[Size - 1, x] = Global.Win;
+                _maze[x,Size - 1] = Global.Win;
+                _maze[x,0] = Global.Win;
                 return;
             }
             i++;
@@ -278,12 +279,13 @@ public class MazeRunner : IMaze<IShell>
     private void SetInit()
     {
         int i = 0;
-        while (i < Size)
+        while (i < 2*Size)
         {
             int x = random.Next(Size - 1);
-            if (_maze[1, x] == Global.Path && _maze[0, x] == Global.Wall)
+            if (_maze[1, x] == Global.Path && _maze[0, x] == Global.Wall && _maze[Size -1,x] == Global.Wall && _maze[Size-2,x] == Global.Path )
             {
                 _maze[0, x] = Global.Start;
+                _maze[Size - 1,x] = Global.Start;
                 return;
             }
             i++;

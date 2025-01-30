@@ -32,6 +32,6 @@ class Program
         //     players[i]=new Player(auxFichas);
         //     fichas = new IFicha[2];
         // }
-        GameController gameController = new GameController(maze,players);
+        GameController gameController = new GameController(maze,players,null);
     }
 }

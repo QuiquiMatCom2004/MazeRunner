@@ -24,8 +24,10 @@ namespace Variable.Move{
                 case ConsoleKey.DownArrow:
                     ny+=1;
                     break;
+                case ConsoleKey.X:
+                    return;
             }
-            if(ny >= 0 && ny < maze.Size && nx >= 0 && nx < maze.Size && maze.Maze[nx,ny].wall == Global.Path){
+            if(ny >= 0 && ny < maze.Size && nx >= 0 && nx < maze.Size && maze.Maze[nx,ny].wall != Global.Wall){
                 ficha.shell = maze.Maze[nx,ny];
                 return;
             }
