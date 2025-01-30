@@ -19,7 +19,7 @@ class Program
         }
         IPlayer[] players= new IPlayer[1];
         IFicha[] fichas = new IFicha[2];
-        fichas = [new Fichas(5,new Shell(1,posiciones[0].Item1,posiciones[0].Item2)),new Fichas(4, new Shell(1,8,9))];
+        fichas = [new Fichas(5,2,new Shell(1,posiciones[0].Item1,posiciones[0].Item2)),new Fichas(4,3, new Shell(1,8,9))];
         players[0] = new Player(fichas);
 
         // for(int i=0; i<players.Length;i++){

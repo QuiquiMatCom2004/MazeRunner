@@ -13,16 +13,16 @@ namespace Variable.Move{
             int ny= y;
             switch(Console.ReadKey(true).Key){
                 case ConsoleKey.LeftArrow:
-                    nx -=1; 
+                    nx -=Global.DistanceToMove; 
                     break;
                 case ConsoleKey.RightArrow:
-                    nx +=1;
+                    nx +=Global.DistanceToMove;
                     break;
                 case ConsoleKey.UpArrow:
-                    ny-=1;
+                    ny-=Global.DistanceToMove;
                     break;
                 case ConsoleKey.DownArrow:
-                    ny+=1;
+                    ny+=Global.DistanceToMove;
                     break;
                 case ConsoleKey.X:
                     return;

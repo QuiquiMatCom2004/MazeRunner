@@ -1,12 +1,13 @@
 using Architecture.IFichas;
 using Architecture.IPlayers;
+using Variable.Globals;
 
 namespace Variable.SystemTurns{
     class SystemTurn{
         static int turn = 0;
         public static int StandartNextTurn(IPlayer[] players){
             int solution =  turn%players.Length;
-            turn++;
+            turn+=Global.TurnJump;
             return solution;
         }
         public static int ActualTurn(){

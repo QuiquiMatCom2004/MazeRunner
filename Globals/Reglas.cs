@@ -11,5 +11,6 @@ namespace Variable.Reglas{
         public static Func<IPlayer[],int> NextTurn;
         public static Action<IModificador[],IFicha> TrapSistem;
         public static Func<IPlayer[],IMaze<IShell>,bool> Victory;
+        public static Action<IFicha> PowerSystem;
     }
 }
