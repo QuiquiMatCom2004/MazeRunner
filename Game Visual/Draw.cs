@@ -23,7 +23,7 @@ public class DrawGame
             return colorIndex switch
             {
                 Global.Wall => ":deciduous_tree:",
-                Global.Path => ":green_square:",
+                Global.Path => ":brown_square:",
                 Global.Win => ":glowing_star:",
                 Global.Start => ":door:",
                 Global.TeleportZone => ":globe_showing_americas:",
