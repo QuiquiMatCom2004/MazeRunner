@@ -81,4 +81,10 @@ namespace Dependencies.Containers{
             return modificadors.ToArray();
         }
     }
+    class MazeGame{
+        public static IMaze<IShell> GetMaze()
+        {
+            return new MazeRunner(50,3);
+        }
+    }
 }
