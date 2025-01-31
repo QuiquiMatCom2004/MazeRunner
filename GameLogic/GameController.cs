@@ -53,11 +53,13 @@ class GameController
         int cont= 0;
         Global.ActualSpeed = actualFicha.speed;
         while(cont < Global.ActualSpeed){
-            Reglas.PowerSystem(actualFicha);
+            if(actualFicha.Cooldown <= 0)
+                Reglas.PowerSystem(actualFicha);
             if(Global.ActivateLater){
                 Global.ResetGlobalsVariables();
                 Reglas.Move(actualFicha,maze);
-                Reglas.PowerSystem(actualFicha);
+                if(actualFicha.Cooldown <= 0)
+                    Reglas.PowerSystem(actualFicha);
             }
             else {
                 Reglas.Move(actualFicha,maze);

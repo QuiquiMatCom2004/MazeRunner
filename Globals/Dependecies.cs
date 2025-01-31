@@ -84,7 +84,7 @@ namespace Dependencies.Containers{
     class MazeGame{
         public static IMaze<IShell> GetMaze()
         {
-            return new MazeRunner(50,3);
+            return new MazeRunner(25,3);
         }
     }
 }

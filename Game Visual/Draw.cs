@@ -7,29 +7,61 @@ using Variable.Globals;
 public class DrawGame
 {
     public static void Draw(IMaze<IShell> maze, IPlayer[] players){
-        var table = new Table();
-        table.AddColumn(new TableColumn("Maze").LeftAligned());
-        table.AddColumn(new TableColumn("Player in Game"));
-        var canvas = DrawMaze.Draw(maze);
-        for(int i = 0; i < players.Length;i++)
-            canvas = DrawPlayer(canvas,players[i].fichas,i);
-        table.AddRow(canvas,new Markup("[yellow]Player in Game[/]"));
-        AnsiConsole.Write(table);
-    }
-    private static Canvas DrawPlayer(Canvas maze, IFicha[] fichas,int playerColor){
-        Func<int,Color> getColor = (num) => {
-            playerColor = playerColor % Global.MaxPlayers;
+        
+        Func<int,string> DrawPlayer = (num) => {
+            var playerColor = num % Global.MaxPlayers;
             return playerColor switch{
-                0 => Color.Magenta1,
-                1 => Color.DarkOrange,
-                2 => Color.Grey89,
-                _=> Color.Black
+                0 => ":wolf:" ,
+                1 => ":vampire:",
+                2 => ":person_walking:",
+                _=> ":chess_pawn:"
             };
         };
-        foreach (var ficha in fichas)
+        Func<int, string> DrawMaze = (num) =>
         {
-            maze.SetPixel(ficha.shell.x, ficha.shell.y,getColor(playerColor));
+            var colorIndex = num % 5;
+            return colorIndex switch
+            {
+                Global.Wall => ":deciduous_tree:",
+                Global.Path => ":green_square:",
+                Global.Win => ":glowing_star:",
+                Global.Start => ":door:",
+                Global.TeleportZone => ":globe_showing_americas:",
+                _ => ":clinking_glasses:"
+            };
+        };
+        var grid = new Grid();
+        for(int i = 0; i < maze.Size;i++){
+            grid.AddColumn();
         }
-        return maze;
-    }    
+
+        List<string> aux = new List<string>();
+        for(int i = 0 ; i < maze.Size;i++){
+            for (int j = 0; j < maze.Size; j++)
+            {
+                int x = GetPlayer(maze.Maze[j,i],players);
+                if(x == -1){
+                    aux.Add(DrawMaze(maze.Maze[j,i].wall));
+                }
+                else{
+                    aux.Add(DrawPlayer(x));
+                }
+            }
+            grid.AddRow(aux.ToArray()).Centered();
+            aux.Clear();
+        }
+        
+        AnsiConsole.Write(grid);
+    }
+    public static int GetPlayer(IShell cell, IPlayer[] players){
+        for (int i = 0; i < players.Length; i++)
+        {
+            foreach( var ficha in players[i].fichas){
+                if(ficha.shell.x == cell.x && ficha.shell.y == cell.y){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 }
