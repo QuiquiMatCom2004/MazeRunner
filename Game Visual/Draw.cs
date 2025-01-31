@@ -29,10 +29,11 @@ public class DrawGame
         AnsiConsole.Write(layout);
     }
     private static string GetGameStatus(){
+        string s = " ";
         if(Global.IsTrap){
-            return "[red]Has Caido en un modificador \n check your chip panel[/]";
+            s += " [red]Has Caido en un modificador \n check your chip panel[/]";
         }
-        return " ";
+        return s;
     }
     private static Grid GetMaze(IMaze<IShell> maze, IPlayer[] players){
         
