@@ -7,6 +7,12 @@ using Variable.Globals;
 public class DrawGame
 {
     public static void Draw(IMaze<IShell> maze, IPlayer[] players){
+        var grid  = GetMaze(maze,players);
+        var layout = new Layout().SplitColumns();
+        
+        AnsiConsole.Write(grid);
+    }
+    private static Grid GetMaze(IMaze<IShell> maze, IPlayer[] players){
         
         Func<int,string> DrawPlayer = (num) => {
             var playerColor = num % Global.MaxPlayers;
@@ -50,10 +56,9 @@ public class DrawGame
             grid.AddRow(aux.ToArray()).Centered();
             aux.Clear();
         }
-        
-        AnsiConsole.Write(grid);
+        return grid;
     }
-    public static int GetPlayer(IShell cell, IPlayer[] players){
+    private static int GetPlayer(IShell cell, IPlayer[] players){
         for (int i = 0; i < players.Length; i++)
         {
             foreach( var ficha in players[i].fichas){

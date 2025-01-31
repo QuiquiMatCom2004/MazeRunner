@@ -12,12 +12,16 @@ class Program
 {
     public static void Main(string[] args)
     {
-        IMaze<IShell> maze = MazeGame.GetMaze();
-        IPlayer[] players = new Player[2];
-        players[0] = new Player1(maze).GetPlayer();
-        players[1] = new Player2(maze).GetPlayer();
-        IModificador[] modificador = new ArrayModicadors(maze).GetModificadors();
+        string opcion = Menu.DisplayMenu();
+        if(opcion == "[Aqua]Salir[/]")Environment.Exit(0);
+        else{
+            IMaze<IShell> maze = MazeGame.GetMaze();
+            IPlayer[] players = new Player[2];
+            players[0] = new Player1(maze).GetPlayer();
+            players[1] = new Player2(maze).GetPlayer();
+            IModificador[] modificador = new ArrayModicadors(maze).GetModificadors();
 
-        GameController gameController = new GameController(maze,players,modificador);
+            GameController gameController = new GameController(maze,players,modificador);
+        }
     }
 }
