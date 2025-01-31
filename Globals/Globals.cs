@@ -13,6 +13,7 @@ namespace Variable.Globals{
         public static bool ActivateLater = false;
         public static bool IsTrap = false;
         public static int TurnJump = 1;
+        public static int DisplaySpeed = 0;
         public static int LessCooldown = 1;
         public const int MaxPlayers = 2;
         public static int ActualSpeed = 0;

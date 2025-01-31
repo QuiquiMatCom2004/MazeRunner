@@ -10,10 +10,11 @@ public class DrawGame
     public static void Draw(IMaze<IShell> maze, IPlayer[] players){
         var grid  = GetMaze(maze,players);
         var layout = new Layout().SplitColumns(
-            new Layout("Board").Ratio(3),
-            new Layout("Right").SplitRows(new Layout("Game"),new Layout("Ficha") ,new Layout("Instruccions")).Ratio(1)
+            new Layout("Board").Ratio(4) ,
+            new Layout("Right").Ratio(1)
+            .SplitRows(new Layout("Game").Ratio(1),new Layout("Ficha").Ratio(1) ,new Layout("Instruccions").Ratio(2))
         );
-        layout["Board"].Update(new Panel( grid).BorderColor(Color.DarkMagenta).Header("Board"));
+        layout["Board"].Update(new Panel( grid).BorderColor(Color.DarkMagenta).Header("[bold]Board[/]"));
         layout["Instruccions"].Update(
             new Panel("Moverse Por las Flechas Y si \n Quieres no Moverte en este turno toca X \n Para Activar la Habilidad Tocar la barra espaciadora \n Para Ganar Coloca dos de tus fichas en las estrellitas \n Y la otra que llegue al mundo").BorderColor(Color.Aquamarine1)
             .Header("Instruccions")
@@ -21,11 +22,11 @@ public class DrawGame
         if(ficha == null)ficha = new Fichas(0,0,new Shell(0,0,0));
         layout["Ficha"].Update(new Panel(
             "Cooldown: " + ficha.Cooldown +
-            "\n Speed: " + (ficha.speed - Global.ActualSpeed)
-        ).BorderColor(Color.Blue).Header("Ficha"));
+            "\nFicha Speed: " + Global.ActualSpeed + "\n Restante Speed: "+Global.DisplaySpeed
+        ).BorderColor(Color.Blue).Header("[bold]Ficha[/]"));
         layout["Game"].Update(new Panel(
              GetGameStatus()
-        ).BorderColor(Color.DarkBlue).Header("GameStatus"));
+        ).BorderColor(Color.DarkBlue).Header("[bold]GameStatus[/]"));
         AnsiConsole.Write(layout);
     }
     private static string GetGameStatus(){

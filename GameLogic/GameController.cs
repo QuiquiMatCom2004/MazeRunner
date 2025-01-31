@@ -50,9 +50,9 @@ class GameController
         IPlayer actualPlayer = players[Reglas.NextTurn(players)];
         IFicha actualFicha = SystemTurn.GetFicha(actualPlayer);
         actualFicha.LessCooldown();
-        int cont= 0;
+        Global.DisplaySpeed = 0;
         Global.ActualSpeed = actualFicha.speed;
-        while(cont < Global.ActualSpeed){
+        while(Global.DisplaySpeed < Global.ActualSpeed){
             if(actualFicha.Cooldown <= 0)
                 Reglas.PowerSystem(actualFicha);
             if(Global.ActivateLater){
@@ -65,7 +65,7 @@ class GameController
                 Reglas.Move(actualFicha,maze);
             }
             Reglas.TrapSistem(modificadors,actualFicha);
-            cont++;
+            Global.DisplaySpeed++;
             Console.Clear();
             DrawGame.ficha = actualFicha;
             DrawGame.Draw(maze,players);
