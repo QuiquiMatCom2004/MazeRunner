@@ -1,3 +1,5 @@
+using Architecture.IModicadores;
+
 namespace Variable.Globals{
     public static class Global
     {
@@ -11,8 +13,8 @@ namespace Variable.Globals{
         public static bool ActivateLater = false;
         public static int TurnJump = 1;
         public static int LessCooldown = 1;
-
         public const int MaxPlayers = 2;
+        public static int ActualSpeed = 0;
 
         public static void ResetGlobalsVariables(){
             DistanceToMove = 1;

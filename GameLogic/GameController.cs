@@ -51,7 +51,8 @@ class GameController
         IFicha actualFicha = SystemTurn.GetFicha(actualPlayer);
         actualFicha.LessCooldown();
         int cont= 0;
-        while(cont < actualFicha.speed){
+        Global.ActualSpeed = actualFicha.speed;
+        while(cont < Global.ActualSpeed){
             Reglas.PowerSystem(actualFicha);
             if(Global.ActivateLater){
                 Global.ResetGlobalsVariables();
@@ -61,7 +62,7 @@ class GameController
             else {
                 Reglas.Move(actualFicha,maze);
             }
-            //Reglas.TrapSistem(modificadors,actualFicha);
+            Reglas.TrapSistem(modificadors,actualFicha);
             cont++;
             Console.Clear();
             DrawGame.Draw(maze,players);

@@ -24,10 +24,6 @@ namespace Variable.Effects{
         }
         #endregion 
 
-        #region ShowTrap
-
-        #endregion
-
         #region DeactivateTraps
         public static void DeactivateTraps()
         {
