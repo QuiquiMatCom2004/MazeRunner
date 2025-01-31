@@ -7,6 +7,7 @@ namespace Variable.TrapSystems{
             foreach(var modificador in modificadors){
                 if(modificador.shell.x == chip.shell.x && modificador.shell.y == chip.shell.y){
                     modificador.execute(chip);
+                    Globals.Global.IsTrap = true;
                 }
             }
         }

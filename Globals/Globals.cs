@@ -11,6 +11,7 @@ namespace Variable.Globals{
         public static int DistanceToMove = 1;
         public static bool SkillIsUsed = false;
         public static bool ActivateLater = false;
+        public static bool IsTrap = false;
         public static int TurnJump = 1;
         public static int LessCooldown = 1;
         public const int MaxPlayers = 2;
@@ -22,6 +23,7 @@ namespace Variable.Globals{
             LessCooldown = 1;
             SkillIsUsed = false;
             ActivateLater = false;
+            IsTrap = false;
         }
     }
 }

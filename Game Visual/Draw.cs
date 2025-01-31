@@ -6,11 +6,33 @@ using Architecture.IPlayers;
 using Variable.Globals;
 public class DrawGame
 {
+    public static IFicha ficha;
     public static void Draw(IMaze<IShell> maze, IPlayer[] players){
         var grid  = GetMaze(maze,players);
-        var layout = new Layout().SplitColumns();
-        
-        AnsiConsole.Write(grid);
+        var layout = new Layout().SplitColumns(
+            new Layout("Board").Ratio(3),
+            new Layout("Right").SplitRows(new Layout("Game"),new Layout("Ficha") ,new Layout("Instruccions")).Ratio(1)
+        );
+        layout["Board"].Update(new Panel( grid).BorderColor(Color.DarkMagenta).Header("Board"));
+        layout["Instruccions"].Update(
+            new Panel("Moverse Por las Flechas Y si \n Quieres no Moverte en este turno toca X \n Para Activar la Habilidad Tocar la barra espaciadora \n Para Ganar Coloca dos de tus fichas en las estrellitas \n Y la otra que llegue al mundo").BorderColor(Color.Aquamarine1)
+            .Header("Instruccions")
+        );
+        if(ficha == null)ficha = new Fichas(0,0,new Shell(0,0,0));
+        layout["Ficha"].Update(new Panel(
+            "Cooldown: " + ficha.Cooldown +
+            "\n Speed: " + (ficha.speed - Global.ActualSpeed)
+        ).BorderColor(Color.Blue).Header("Ficha"));
+        layout["Game"].Update(new Panel(
+             GetGameStatus()
+        ).BorderColor(Color.DarkBlue).Header("GameStatus"));
+        AnsiConsole.Write(layout);
+    }
+    private static string GetGameStatus(){
+        if(Global.IsTrap){
+            return "[red]Has Caido en un modificador \n check your chip panel[/]";
+        }
+        return " ";
     }
     private static Grid GetMaze(IMaze<IShell> maze, IPlayer[] players){
         

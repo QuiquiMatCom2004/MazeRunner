@@ -1,0 +1,12 @@
+
+# Ignorar archivos de compilación
+bin/
+obj/
+
+# Ignorar archivos de configuración de usuario
+*.user
+*.suo
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db

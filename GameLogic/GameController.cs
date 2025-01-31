@@ -67,6 +67,7 @@ class GameController
             Reglas.TrapSistem(modificadors,actualFicha);
             cont++;
             Console.Clear();
+            DrawGame.ficha = actualFicha;
             DrawGame.Draw(maze,players);
         }
     }
